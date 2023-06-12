@@ -21,6 +21,10 @@ label {
   @apply text-blue-900;
 }
 
+img {
+  max-height: 100%;
+}
+
 .btn-primary {
   @apply rounded-md bg-blue-900 px-4 py-1 text-white;
 }
