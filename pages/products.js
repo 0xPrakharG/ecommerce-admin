@@ -12,6 +12,7 @@ export default function Products() {
   }, []);
   return (
     <Layout>
+      <h1>Products</h1>
       <Link
         className="rounded-md bg-blue-900 px-2 py-1 text-white"
         href={"/products/new"}
