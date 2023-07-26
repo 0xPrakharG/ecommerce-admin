@@ -1,9 +1,9 @@
-import { mongooseConnect } from "@/lib/mongoose";
+import { connectDB } from "@/utils/mongoose";
 import { Product } from "@/models/Product";
 
 export default async function handle(req, res) {
   const { method } = req;
-  await mongooseConnect();
+  await connectDB();
 
   if (method === "GET") {
     if (req.query?.id) {

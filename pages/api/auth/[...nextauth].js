@@ -1,9 +1,10 @@
-import NextAuth from "next-auth";
+import NextAuth from "next-auth/next";
 import GoogleProvider from "next-auth/providers/google";
-import { MongoDBAdapter } from "@next-auth/mongodb-adapter";
-import clientPromise from "@/lib/mongodb";
+import { connectDB } from "@/utils/mongoose";
+// import { MongoDBAdapter } from "@next-auth/mongodb-adapter";
+// import clientPromise from "@/utils/mongodb";
 
-export default NextAuth({
+const handler = NextAuth({
   providers: [
     // OAuth authentication providers...
     GoogleProvider({
@@ -11,5 +12,32 @@ export default NextAuth({
       clientSecret: process.env.GOOGLE_SECRET,
     }),
   ],
-  adapter: MongoDBAdapter(clientPromise),
+  callbacks: {
+    async session({ session }) {
+      return session;
+    },
+    async signIn({ profile }) {
+      console.log(profile);
+      try {
+        await connectDB();
+        return true;
+      } catch (error) {
+        console.log(error);
+        return false;
+      }
+    },
+  },
 });
+
+export default handler;
+// export default NextAuth({
+//   providers: [
+//     // OAuth authentication providers...
+//     GoogleProvider({
+//       clientId: process.env.GOOGLE_ID,
+//       clientSecret: process.env.GOOGLE_SECRET,
+//     }),
+//   ],
+//   secret: process.env.NEXTAUTH_SECRET,
+//   adapter: MongoDBAdapter(clientPromise),
+// });
