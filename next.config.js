@@ -2,11 +2,9 @@
 const nextConfig = {
   reactStrictMode: true,
   images: {
-    remotePatterns: [
-      {
-        protocol: "https",
-        hostname: "**",
-      },
+    domains: [
+      "prakharg-next-ecommerce.s3.amazonaws.com",
+      "lh3.googleusercontent.com",
     ],
   },
 };

@@ -17,7 +17,6 @@ export default function Home() {
             alt=""
             width="40"
             height="40"
-            referrerpolicy="no-referrer"
             className="ml-1.5 h-8 w-8 rounded-[50%]"
           />
           <span className="p-2 pl-0">{session?.user?.name}</span>

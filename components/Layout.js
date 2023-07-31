@@ -4,7 +4,6 @@ import { connectDB } from "@/utils/mongoose";
 import { useSession, signIn, signOut } from "next-auth/react";
 
 export default function Layout({ children }) {
-  const db = connectDB();
   const { data: session } = useSession();
   if (!session) {
     return (
