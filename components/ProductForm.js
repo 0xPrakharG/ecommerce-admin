@@ -115,16 +115,18 @@ export default function ProductForm({
       </select>
       {propertiesToFill.length > 0 &&
         propertiesToFill.map((p) => (
-          <div className="flex gap-1">
-            <div>{p.name}</div>
-            <select
-              value={productProperties[p.name]}
-              onChange={(ev) => setProductProp(p.name, ev.target.value)}
-            >
-              {p.values.map((v) => (
-                <option value={v}>{v}</option>
-              ))}
-            </select>
+          <div className="">
+            <label>{p.name[0].toUpperCase() + p.name.substring(1)}</label>
+            <div>
+              <select
+                value={productProperties[p.name]}
+                onChange={(ev) => setProductProp(p.name, ev.target.value)}
+              >
+                {p.values.map((v) => (
+                  <option value={v}>{v}</option>
+                ))}
+              </select>
+            </div>
           </div>
         ))}
       <label>Photos</label>
@@ -136,7 +138,10 @@ export default function ProductForm({
         > */}
         {!!images?.length &&
           images.map((link) => (
-            <div key={link} className="h-24">
+            <div
+              key={link}
+              className="h-24 rounded-sm border border-gray-200 bg-white p-4 shadow-sm"
+            >
               <Image
                 width="150"
                 height="100"
@@ -152,7 +157,7 @@ export default function ProductForm({
             <Spinner />
           </div>
         )}
-        <label className="flex h-24 w-24 cursor-pointer items-center justify-center gap-1 rounded-lg bg-gray-200 text-center text-sm text-gray-500">
+        <label className="flex h-24 w-24 cursor-pointer flex-col items-center justify-center gap-1 rounded-sm border border-primary bg-white text-center text-sm text-primary shadow-sm">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             fill="none"
@@ -167,7 +172,7 @@ export default function ProductForm({
               d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5m-13.5-9L12 3m0 0l4.5 4.5M12 3v13.5"
             />
           </svg>
-          <div>Upload</div>
+          <div>Add Image</div>
           <input type="file" onChange={uploadImages} className="hidden" />
         </label>
       </div>
